@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.API", "Twith.API\Twith.API.csproj", "{0B0A173F-35CB-45BD-8659-473CA26FF004}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Domain", "Twith.Domain\Twith.Domain.csproj", "{F1463602-2A61-44D5-B6EF-FFA5D3FD6260}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B0A173F-35CB-45BD-8659-473CA26FF004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B0A173F-35CB-45BD-8659-473CA26FF004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B0A173F-35CB-45BD-8659-473CA26FF004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B0A173F-35CB-45BD-8659-473CA26FF004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1463602-2A61-44D5-B6EF-FFA5D3FD6260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1463602-2A61-44D5-B6EF-FFA5D3FD6260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1463602-2A61-44D5-B6EF-FFA5D3FD6260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1463602-2A61-44D5-B6EF-FFA5D3FD6260}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

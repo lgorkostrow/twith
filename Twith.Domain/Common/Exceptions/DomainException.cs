@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MarketPlace.Domain.Common.Exceptions
+namespace Twith.Domain.Common.Exceptions
 {
     public class DomainException : Exception
     {

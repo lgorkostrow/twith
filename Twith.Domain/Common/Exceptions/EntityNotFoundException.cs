@@ -1,4 +1,4 @@
-﻿namespace MarketPlace.Domain.Common.Exceptions
+﻿namespace Twith.Domain.Common.Exceptions
 {
     public class EntityNotFoundException : DomainException
     {

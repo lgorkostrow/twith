@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Twith.API.Requests.Auth;
 using Twith.API.Responses.Auth;
 using Twith.Domain.User.Commands;
+using Twith.Domain.User.Queries;
 using Twith.Infrastructure.Identity;
 
 namespace Twith.API.Controllers.Auth
@@ -30,15 +31,20 @@ namespace Twith.API.Controllers.Auth
         
         [HttpPost]
         [Route("sign-in")]
-        public async Task<ActionResult> SignIn([FromBody] SignInRequest request)
+        public async Task<ActionResult<AuthResponse>> SignIn([FromBody] SignInRequest request)
         {
             var result = await _signInManager.PasswordSignInAsync(request.Email, request.Password, false, true);
             if (result.Succeeded)
             {
+                var user = await QueryAsync(new GetUserByEmailQuery(request.Email));
+                
                 return Ok(new AuthResponse(
-                    Guid.NewGuid(),
-                    request.Email,
-                    await _tokenClaimsService.GetTokenAsync(request.Email)
+                    user.Id,
+                    user.Email,
+                    user.FirstName,
+                    user.LastName,
+                    user.NickName,
+                    await _tokenClaimsService.GetTokenAsync(user.Email)
                 ));
             }
 
@@ -47,7 +53,7 @@ namespace Twith.API.Controllers.Auth
 
         [HttpPost]
         [Route("sign-up")]
-        public async Task<ActionResult<SignUpRequest>> SignUp([FromBody] SignUpRequest request)
+        public async Task<ActionResult<AuthResponse>> SignUp([FromBody] SignUpRequest request)
         {
             var user = new ApplicationUser()
             {
@@ -74,6 +80,9 @@ namespace Twith.API.Controllers.Auth
             return Ok(new AuthResponse(
                 Guid.Parse(user.Id),
                 request.Email,
+                request.FirstName,
+                request.LastName,
+                request.NickName,
                 await _tokenClaimsService.GetTokenAsync(request.Email)
             ));
         }

@@ -1,29 +1,28 @@
 ﻿using System;
 
-namespace Twith.API.Responses.Auth
+namespace Twith.Domain.User.Dtos
 {
-    public record AuthResponse
+    public record UserDetailedView
     {
         public Guid Id { get; }
-        
-        public string Email { get; }
-        
-        public string FirstName { get; }
-        
-        public string LastName { get; }
-        
-        public string NickName { get; }
-        
-        public string Token { get; }
 
-        public AuthResponse(Guid id, string email, string firstName, string lastName, string nickName, string token)
+        public string Email { get; }
+
+        public string FirstName { get; }
+
+        public string LastName { get; }
+
+        public string FullName => $"{FirstName} {LastName}";
+
+        public string NickName { get; }
+
+        public UserDetailedView(Guid id, string email, string firstName, string lastName, string nickName)
         {
             Id = id;
             Email = email;
             FirstName = firstName;
             LastName = lastName;
             NickName = nickName;
-            Token = token;
         }
     }
 }

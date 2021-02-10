@@ -1,12 +1,11 @@
 ﻿using System;
+using Twith.Domain.Twith.ValueObjects;
 
-namespace Twith.Domain.User.Dtos
+namespace Twith.Domain.Twith.Dtos
 {
-    public record UserDetailedView
+    public class AuthorDto
     {
         public Guid Id { get; }
-
-        public string Email { get; }
 
         public string FirstName { get; }
 
@@ -16,13 +15,21 @@ namespace Twith.Domain.User.Dtos
 
         public string NickName { get; }
 
-        public UserDetailedView(Guid id, string email, string firstName, string lastName, string nickName)
+        public AuthorDto(Guid id, string firstName, string lastName, string nickName)
         {
             Id = id;
-            Email = email;
             FirstName = firstName;
             LastName = lastName;
             NickName = nickName;
+        }
+
+        public AuthorDto(Author author) : this(
+            author.Id,
+            author.FirstName.Value,
+            author.LastName.Value,
+            author.NickName.Value
+        )
+        {
         }
     }
 }

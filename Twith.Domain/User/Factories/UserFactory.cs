@@ -4,9 +4,9 @@ using Twith.Domain.User.ValueObjects;
 
 namespace Twith.Domain.User.Factories
 {
-    public class UserFactory
+    public static class UserFactory
     {
-        public static Entities.User create(Guid id, string email, string firstName, string lastName, string nickName)
+        public static Entities.User Create(Guid id, string email, string firstName, string lastName, string nickName)
         {
             return new Entities.User(
                 id,

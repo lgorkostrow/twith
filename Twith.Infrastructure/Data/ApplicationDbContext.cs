@@ -11,9 +11,12 @@ namespace Twith.Infrastructure.Data
         
         public DbSet<User> Users { get; set; }
         
+        public DbSet<Domain.Twith.Entities.Twith> Twiths { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new TwithConfiguration());
         }
         
         public override int SaveChanges()

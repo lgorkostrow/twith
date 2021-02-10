@@ -19,7 +19,7 @@ namespace Twith.Application.Commands.User
         public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             await _repository.SaveAsync(
-                UserFactory.create(request.Id, request.Email, request.FirstName, request.LastName, request.NickName)
+                UserFactory.Create(request.Id, request.Email, request.FirstName, request.LastName, request.NickName)
             );
 
             return Unit.Value;

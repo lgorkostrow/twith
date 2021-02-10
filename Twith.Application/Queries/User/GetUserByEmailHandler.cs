@@ -9,7 +9,7 @@ using Twith.Infrastructure.Data;
 
 namespace Twith.Application.Queries.User
 {
-    public class GetUserByEmailHandler : IRequestHandler<GetUserByEmailQuery, UserDetailedView>
+    public class GetUserByEmailHandler : IRequestHandler<GetUserByEmailQuery, UserDetailedViewDto>
     {
         private readonly ApplicationDbContext _context;
 
@@ -18,11 +18,11 @@ namespace Twith.Application.Queries.User
             _context = context;
         }
 
-        public Task<UserDetailedView> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken)
+        public Task<UserDetailedViewDto> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken)
         {
             return (from u in _context.Users
                     where u.Email.Value.Equals(request.Email)
-                    select new UserDetailedView(
+                    select new UserDetailedViewDto(
                         u.Id,
                         u.Email.Value,
                         u.FirstName.Value,

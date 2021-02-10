@@ -3,7 +3,7 @@ using Twith.Domain.User.Dtos;
 
 namespace Twith.Domain.User.Queries
 {
-    public record GetUserByEmailQuery : IRequest<UserDetailedView>
+    public record GetUserByEmailQuery : IRequest<UserDetailedViewDto>
     {
         public string Email { get; }
 

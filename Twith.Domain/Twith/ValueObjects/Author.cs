@@ -13,6 +13,10 @@ namespace Twith.Domain.Twith.ValueObjects
         
         public NickName NickName { get; }
 
+        private Author()
+        {
+        }
+
         public Author(Guid id, Name firstName, Name lastName, NickName nickName)
         {
             Id = id;

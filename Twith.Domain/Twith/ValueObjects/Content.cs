@@ -1,4 +1,6 @@
-﻿namespace Twith.Domain.Twith.ValueObjects
+﻿using System;
+
+namespace Twith.Domain.Twith.ValueObjects
 {
     public record Content
     {
@@ -6,6 +8,11 @@
 
         public Content(string value)
         {
+            if (string.IsNullOrEmpty(value) || value.Length > 140)
+            {
+                throw new ArgumentException(nameof(value));
+            } 
+            
             Value = value;
         }
     }

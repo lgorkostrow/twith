@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Infrastructure", "Twi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Application", "Twith.Application\Twith.Application.csproj", "{C0020E13-813D-416E-9933-4087B41E1D20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Domain.Test", "Twith.Domain.Test\Twith.Domain.Test.csproj", "{30D51756-3187-4FAA-8A5F-0371DB84DDA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{C0020E13-813D-416E-9933-4087B41E1D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0020E13-813D-416E-9933-4087B41E1D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0020E13-813D-416E-9933-4087B41E1D20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30D51756-3187-4FAA-8A5F-0371DB84DDA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30D51756-3187-4FAA-8A5F-0371DB84DDA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30D51756-3187-4FAA-8A5F-0371DB84DDA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30D51756-3187-4FAA-8A5F-0371DB84DDA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

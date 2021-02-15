@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Twith.Application.Service;
 using Twith.Domain.Twith.Repositories;
 using Twith.Domain.User.Repositories;
 using Twith.Infrastructure.Data;
@@ -55,6 +56,7 @@ namespace Twith.API
             // Domain
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITwithRepository, TwithRepository>();
+            services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

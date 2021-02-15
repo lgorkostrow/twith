@@ -34,7 +34,7 @@ namespace Twith.Infrastructure.Data.Repositories
         public async Task<TEntity> SaveAsync(TEntity entity)
         {
             await Context.AddAsync(entity);
-            await Context.SaveChangesAsync();
+            await Context.SaveEntitiesAsync();
 
             return entity;
         }
@@ -42,9 +42,14 @@ namespace Twith.Infrastructure.Data.Repositories
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             Context.Update(entity);
-            await Context.SaveChangesAsync();
+            await Context.SaveEntitiesAsync();
 
             return entity;
+        }
+        
+        public async Task SaveEntitiesAsync()
+        {
+            await Context.SaveEntitiesAsync();
         }
     }
 }

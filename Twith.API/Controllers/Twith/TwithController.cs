@@ -34,5 +34,19 @@ namespace Twith.API.Controllers.Twith
 
             return Ok(await QueryAsync(new GetTwithQuery(command.Id)));
         }
+        
+        [HttpPost]
+        [Route("{id}/like")]
+        public async Task<ActionResult> Like([FromRoute] Guid id)
+        {
+            var command = new LikeTwithCommand(
+                id,
+                Guid.Parse(_userManager.GetUserId(this.User))
+            );
+            
+            await CommandAsync(command);
+
+            return Ok(await QueryAsync(new GetTwithQuery(id)));
+        }
     }
 }

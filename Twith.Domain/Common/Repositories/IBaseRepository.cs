@@ -13,5 +13,7 @@ namespace Twith.Domain.Common.Repositories
         public Task<TEntity> SaveAsync(TEntity entity);
 
         public Task<TEntity> UpdateAsync(TEntity entity);
+
+        public Task SaveEntitiesAsync();
     }
 }

@@ -1,33 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Twith.Domain.Twith.Entities;
 
 namespace Twith.Infrastructure.Data.EntityConfigurations
 {
-    public class TwithConfiguration : IEntityTypeConfiguration<Domain.Twith.Entities.Twith>
+    public class LikeConfiguration : IEntityTypeConfiguration<Like>
     {
-        public void Configure(EntityTypeBuilder<Domain.Twith.Entities.Twith> builder)
+        public void Configure(EntityTypeBuilder<Like> builder)
         {
-            builder.ToTable("Twiths");
-            builder.HasKey(t => t.Id);
-            builder.Property(t => t.Id)
+            builder.ToTable("Likes");
+            builder.HasKey(l => l.Id);
+            builder.Property(l => l.Id)
+                .ValueGeneratedNever()
                 .HasColumnType("uuid");
-            
-            builder.OwnsOne(t => t.Content, c =>
-            {
-                c.Property(x => x.Value)
-                    .HasMaxLength(140)
-                    .HasColumnName("Content")
-                    .HasColumnType("varchar(140)")
-                    .IsRequired();
-            });
-            
-            builder.OwnsOne(t => t.Author, a =>
+
+            builder.OwnsOne(l => l.Author, a =>
             {
                 a.Property(p => p.Id)
-                    .HasColumnName("AuthorId")
+                    .HasColumnName("AuthorIdentificator")
                     .HasColumnType("uuid")
                     .IsRequired();
- 
+
                 a.OwnsOne(p => p.FirstName, fn =>
                 {
                     fn.Property(x => x.Value)
@@ -55,13 +48,6 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
                         .IsRequired();
                 });
             });
-            
-            builder.Property<int>("_likesCount")
-                .HasColumnName("LikesCount")
-                .HasDefaultValue(0);
-            
-            builder.HasMany(t => t.Likes)
-                .WithOne(l => l.Twith);
         }
     }
 }

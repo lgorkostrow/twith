@@ -8,7 +8,6 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("Users");
             builder.HasKey(u => u.Id);
             builder.Property(u => u.Id)
                 .HasColumnType("uuid");
@@ -18,7 +17,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
                 fn.HasIndex(x => x.Value).IsUnique();
                 fn.Property(x => x.Value)
                     .HasMaxLength(255)
-                    .HasColumnName("Email")
+                    .HasColumnName("email")
                     .HasColumnType("varchar(255)")
                     .IsRequired();
             });
@@ -27,7 +26,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
             {
                 fn.Property(x => x.Value)
                     .HasMaxLength(100)
-                    .HasColumnName("FirstName")
+                    .HasColumnName("first_name")
                     .HasColumnType("varchar(100)")
                     .IsRequired();
             });
@@ -36,7 +35,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
             {
                 fn.Property(x => x.Value)
                     .HasMaxLength(100)
-                    .HasColumnName("LastName")
+                    .HasColumnName("last_name")
                     .HasColumnType("varchar(100)")
                     .IsRequired();
             });
@@ -46,7 +45,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
                 fn.HasIndex(x => x.Value).IsUnique();
                 fn.Property(x => x.Value)
                     .HasMaxLength(100)
-                    .HasColumnName("NickName")
+                    .HasColumnName("nick_name")
                     .HasColumnType("varchar(100)")
                     .IsRequired();
             });

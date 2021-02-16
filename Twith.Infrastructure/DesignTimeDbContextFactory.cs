@@ -44,9 +44,10 @@ namespace Twith.Infrastructure
 
             var optionsBuilder = new DbContextOptionsBuilder<TContext>();
 
-            optionsBuilder.UseNpgsql(connectionString);
+            optionsBuilder.UseNpgsql(connectionString).UseSnakeCaseNamingConvention();
 
             var options = optionsBuilder.Options;
+            
             return CreateNewInstance(options);
         }
     }

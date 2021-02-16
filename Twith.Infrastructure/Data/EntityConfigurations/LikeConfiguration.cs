@@ -8,7 +8,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Like> builder)
         {
-            builder.ToTable("Likes");
+            builder.ToTable("likes");
             builder.HasKey(l => l.Id);
             builder.Property(l => l.Id)
                 .ValueGeneratedNever()
@@ -17,7 +17,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
             builder.OwnsOne(l => l.Author, a =>
             {
                 a.Property(p => p.Id)
-                    .HasColumnName("AuthorIdentificator")
+                    .HasColumnName("author_id")
                     .HasColumnType("uuid")
                     .IsRequired();
 
@@ -25,7 +25,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
                 {
                     fn.Property(x => x.Value)
                         .HasMaxLength(100)
-                        .HasColumnName("AuthorFirstName")
+                        .HasColumnName("author_first_name")
                         .HasColumnType("varchar(100)")
                         .IsRequired();
                 });
@@ -34,7 +34,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
                 {
                     fn.Property(x => x.Value)
                         .HasMaxLength(100)
-                        .HasColumnName("AuthorLastName")
+                        .HasColumnName("author_last_name")
                         .HasColumnType("varchar(100)")
                         .IsRequired();
                 });
@@ -43,7 +43,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
                 {
                     fn.Property(x => x.Value)
                         .HasMaxLength(100)
-                        .HasColumnName("AuthorNickName")
+                        .HasColumnName("author_nick_name")
                         .HasColumnType("varchar(100)")
                         .IsRequired();
                 });

@@ -39,20 +39,18 @@ namespace Twith.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
+
             services.AddMediatR(AppDomain.CurrentDomain.Load("Twith.Application"));
-            
+
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseNpgsql("name=ConnectionStrings:DefaultConnection")
+                    .UseSnakeCaseNamingConvention()
                     .EnableSensitiveDataLogging(Configuration.GetValue<bool>("Logging:EnableSqlParameterLogging")));
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Twith.API", Version = "v1" });
-            });
-            
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Twith.API", Version = "v1"}); });
+
             ConfigureIdentity(services);
-            
+
             // Domain
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITwithRepository, TwithRepository>();
@@ -75,12 +73,9 @@ namespace Twith.API
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
-        
+
         public void ConfigureIdentity(IServiceCollection services)
         {
             services.AddScoped<ITokenClaimsService>(x =>
@@ -88,7 +83,9 @@ namespace Twith.API
                     x.GetRequiredService<UserManager<ApplicationUser>>()));
 
             services.AddDbContext<AppIdentityDbContext>(options =>
-                options.UseNpgsql("name=ConnectionStrings:IdentityConnection"));
+                options.UseNpgsql("name=ConnectionStrings:IdentityConnection")
+                    .UseSnakeCaseNamingConvention()
+            );
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()

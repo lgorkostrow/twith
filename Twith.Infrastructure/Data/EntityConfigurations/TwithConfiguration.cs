@@ -7,7 +7,6 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Domain.Twith.Entities.Twith> builder)
         {
-            builder.ToTable("Twiths");
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Id)
                 .HasColumnType("uuid");
@@ -16,7 +15,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
             {
                 c.Property(x => x.Value)
                     .HasMaxLength(140)
-                    .HasColumnName("Content")
+                    .HasColumnName("content")
                     .HasColumnType("varchar(140)")
                     .IsRequired();
             });
@@ -24,7 +23,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
             builder.OwnsOne(t => t.Author, a =>
             {
                 a.Property(p => p.Id)
-                    .HasColumnName("AuthorId")
+                    .HasColumnName("author_id")
                     .HasColumnType("uuid")
                     .IsRequired();
  
@@ -32,7 +31,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
                 {
                     fn.Property(x => x.Value)
                         .HasMaxLength(100)
-                        .HasColumnName("AuthorFirstName")
+                        .HasColumnName("author_first_name")
                         .HasColumnType("varchar(100)")
                         .IsRequired();
                 });
@@ -41,7 +40,7 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
                 {
                     fn.Property(x => x.Value)
                         .HasMaxLength(100)
-                        .HasColumnName("AuthorLastName")
+                        .HasColumnName("author_last_name")
                         .HasColumnType("varchar(100)")
                         .IsRequired();
                 });
@@ -50,14 +49,14 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
                 {
                     fn.Property(x => x.Value)
                         .HasMaxLength(100)
-                        .HasColumnName("AuthorNickName")
+                        .HasColumnName("author_nick_name")
                         .HasColumnType("varchar(100)")
                         .IsRequired();
                 });
             });
             
             builder.Property<int>("_likesCount")
-                .HasColumnName("LikesCount")
+                .HasColumnName("likes_count")
                 .HasDefaultValue(0);
             
             builder.HasMany(t => t.Likes)

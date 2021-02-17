@@ -1,21 +1,12 @@
 ﻿using System;
-using Twith.Domain.Common.Events;
 
 namespace Twith.Domain.Twith.Events
 {
-    public record TwithLikedEvent : IDomainEvent
+    public record TwithLikedEvent : BaseTwithLikeEvent
     {
-        public Guid TwithId { get; }
-        
-        public Guid AuthorId { get; }
-        
-        public Guid LikeId { get; }
-
-        public TwithLikedEvent(Guid twithId, Guid authorId, Guid likeId)
+        public TwithLikedEvent(Guid twithId, Guid authorId, Guid likeId) : base(twithId, authorId, likeId)
         {
-            TwithId = twithId;
-            AuthorId = authorId;
-            LikeId = likeId;
+            
         }
     }
 }

@@ -8,11 +8,11 @@ namespace Twith.Domain.Twith.Entities
     {
         public Guid Id { get; }
 
-        public Twith Twith { get; }
+        public virtual Twith Twith { get; }
         
         public Author Author { get; }
 
-        private Like()
+        protected Like()
         {
             
         }

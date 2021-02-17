@@ -43,7 +43,8 @@ namespace Twith.API
             services.AddMediatR(AppDomain.CurrentDomain.Load("Twith.Application"));
 
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseNpgsql("name=ConnectionStrings:DefaultConnection")
+                options => options
+                    .UseNpgsql("name=ConnectionStrings:DefaultConnection")
                     .UseSnakeCaseNamingConvention()
                     .EnableSensitiveDataLogging(Configuration.GetValue<bool>("Logging:EnableSqlParameterLogging")));
 

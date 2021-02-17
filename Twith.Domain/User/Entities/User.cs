@@ -17,8 +17,9 @@ namespace Twith.Domain.User.Entities
         
         public NickName NickName { get; }
 
-        private User()
+        protected User()
         {
+            
         }
         
         public User(Guid id, Email email, Name firstName, Name lastName, NickName nickName)

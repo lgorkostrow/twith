@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -8,16 +7,16 @@ using Twith.Infrastructure.Data;
 
 namespace Twith.Application.Events.Twith
 {
-    public class RecountTwithLikes : INotificationHandler<TwithLikedEvent>
+    public class RecountTwithLikes
     {
         private readonly ApplicationDbContext _context;
 
-        public RecountTwithLikes(ApplicationDbContext context)
+        protected RecountTwithLikes(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task Handle(TwithLikedEvent notification, CancellationToken cancellationToken)
+        protected async Task Recount(BaseTwithLikeEvent notification, CancellationToken cancellationToken)
         {
             await _context.Database.ExecuteSqlRawAsync(@"
                 UPDATE twiths t
@@ -29,6 +28,30 @@ namespace Twith.Application.Events.Twith
                 ) s
                 WHERE id = {0}", 
                 notification.TwithId);
+        }
+    }
+    
+    public class TwithLikedHandler : RecountTwithLikes, INotificationHandler<TwithLikedEvent>
+    {
+        public TwithLikedHandler(ApplicationDbContext context) : base(context)
+        {
+        }
+
+        public async Task Handle(TwithLikedEvent notification, CancellationToken cancellationToken)
+        {
+            await Recount(notification, cancellationToken);
+        }
+    }
+
+    public class TwithUnlikedHandler : RecountTwithLikes, INotificationHandler<TwithUnlikedEvent>
+    {
+        public TwithUnlikedHandler(ApplicationDbContext context) : base(context)
+        {
+        }
+
+        public async Task Handle(TwithUnlikedEvent notification, CancellationToken cancellationToken)
+        {
+            await Recount(notification, cancellationToken);
         }
     }
 }

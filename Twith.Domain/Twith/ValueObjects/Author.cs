@@ -13,8 +13,9 @@ namespace Twith.Domain.Twith.ValueObjects
 
         public NickName NickName { get; }
 
-        private Author()
+        protected Author()
         {
+            
         }
 
         public Author(Guid id, Name firstName, Name lastName, NickName nickName)

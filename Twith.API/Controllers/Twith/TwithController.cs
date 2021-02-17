@@ -48,5 +48,19 @@ namespace Twith.API.Controllers.Twith
 
             return Ok(await QueryAsync(new GetTwithQuery(id)));
         }
+        
+        [HttpPost]
+        [Route("{id}/unlike")]
+        public async Task<ActionResult> Unlike([FromRoute] Guid id)
+        {
+            var command = new UnlikeTwithCommand(
+                id,
+                Guid.Parse(_userManager.GetUserId(this.User))
+            );
+            
+            await CommandAsync(command);
+
+            return Ok(await QueryAsync(new GetTwithQuery(id)));
+        }
     }
 }

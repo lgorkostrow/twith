@@ -21,46 +21,55 @@ namespace Twith.API.Controllers.Twith
             _userManager = userManager;
         }
 
+        [HttpGet]
+        public async Task<ActionResult> GetList([FromQuery] GetTwithListRequest request)
+        {
+            var query = new GetTwithsListQuery(
+                request.Limit,
+                request.Offset,
+                Guid.Parse(_userManager.GetUserId(User))
+            );
+
+            return Ok(await QueryAsync(query));
+        }
+
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] CreateTwithRequest request)
         {
+            var userId = Guid.Parse(_userManager.GetUserId(User));
             var command = new CreateTwithCommand(
                 Guid.NewGuid(),
                 request.Content,
-                Guid.Parse(_userManager.GetUserId(this.User))
+                userId
             );
-            
+
             await CommandAsync(command);
 
-            return Ok(await QueryAsync(new GetTwithQuery(command.Id)));
+            return Ok(await QueryAsync(new GetTwithQuery(command.Id, userId)));
         }
-        
+
         [HttpPost]
         [Route("{id}/like")]
         public async Task<ActionResult> Like([FromRoute] Guid id)
         {
-            var command = new LikeTwithCommand(
-                id,
-                Guid.Parse(_userManager.GetUserId(this.User))
-            );
-            
+            var userId = Guid.Parse(_userManager.GetUserId(User));
+            var command = new LikeTwithCommand(id, userId);
+
             await CommandAsync(command);
 
-            return Ok(await QueryAsync(new GetTwithQuery(id)));
+            return Ok(await QueryAsync(new GetTwithQuery(id, userId)));
         }
-        
+
         [HttpPost]
         [Route("{id}/unlike")]
         public async Task<ActionResult> Unlike([FromRoute] Guid id)
         {
-            var command = new UnlikeTwithCommand(
-                id,
-                Guid.Parse(_userManager.GetUserId(this.User))
-            );
-            
+            var userId = Guid.Parse(_userManager.GetUserId(User));
+            var command = new UnlikeTwithCommand(id, userId);
+
             await CommandAsync(command);
 
-            return Ok(await QueryAsync(new GetTwithQuery(id)));
+            return Ok(await QueryAsync(new GetTwithQuery(id, userId)));
         }
     }
 }

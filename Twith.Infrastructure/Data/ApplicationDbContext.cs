@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Twith.Domain.Common.Entities;
+using Twith.Domain.Twith.Entities;
 using Twith.Domain.User.Entities;
 using Twith.Infrastructure.Data.EntityConfigurations;
 
@@ -21,6 +22,7 @@ namespace Twith.Infrastructure.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Domain.Twith.Entities.Twith> Twiths { get; set; }
+        public DbSet<Like> Likes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

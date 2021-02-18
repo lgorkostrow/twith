@@ -20,14 +20,14 @@ namespace Twith.Application.Queries.Twith
 
         public Task<TwithDetailedViewDto> Handle(GetTwithQuery request, CancellationToken cancellationToken)
         {
-            return (from t in _context.Twiths
-                    where t.Id.Equals(request.Id)
-                    select new TwithDetailedViewDto(
-                        t.Id,
-                        t.Content.Value,
-                        t.CreatedAt,
-                        new AuthorDto(t.Author))
-                )
+            return _context.Twiths.Where(t => t.Id == request.Id)
+                .Select(t => new TwithDetailedViewDto(
+                    t.Id,
+                    t.Content.Value,
+                    t.CreatedAt,
+                    new AuthorDto(t.Author),
+                    _context.Likes.Any(l => l.Twith.Id == t.Id && l.Author.Id == request.CurrentUserId)
+                ))
                 .AsNoTracking()
                 .FirstOrDefaultAsync(cancellationToken: cancellationToken);
         }

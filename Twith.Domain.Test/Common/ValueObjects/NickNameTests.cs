@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Bogus;
 using Xunit;
-using Xunit.Extensions;
 
 namespace Twith.Domain.Test.Common.ValueObjects
 {

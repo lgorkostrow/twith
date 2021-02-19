@@ -22,6 +22,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Twith.Domain\Twith.Domain.csproj" />
+        <ProjectReference Include="..\Twith.Test.Helpers\Twith.Test.Helpers.csproj" />
     </ItemGroup>
     
 </Project>

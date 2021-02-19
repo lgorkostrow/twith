@@ -7,16 +7,15 @@ namespace Twith.Domain.Common.Entities
 {
     public abstract class BaseEntity
     {
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         [NotMapped]
         public IList<IDomainEvent> DomainEvents { get; private set; }
 
         protected BaseEntity()
         {
-            CreatedAt = UpdatedAt = DateTime.UtcNow;
             DomainEvents = new List<IDomainEvent>();
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace Twith.Application.Queries.Twith
                 .Select(t => new TwithListViewDto(
                     t.Id,
                     t.Content.Value,
-                    t.CreatedAt,
+                    (DateTime) t.CreatedAt,
                     new AuthorDto(t.Author),
                     _context.Likes.Any(l => l.Twith.Id == t.Id && l.Author.Id == request.CurrentUserId)           
                 ))

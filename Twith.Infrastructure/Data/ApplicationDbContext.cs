@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Twith.Domain.Common.Entities;
@@ -33,6 +34,8 @@ namespace Twith.Infrastructure.Data
 
         public async Task<int> SaveEntitiesAsync()
         {
+            AddTimestamps();
+            
             var res = await SaveChangesAsync(); 
 
             var domainEventEntities = ChangeTracker.Entries<BaseEntity>()
@@ -46,6 +49,24 @@ namespace Twith.Infrastructure.Data
             }
 
             return res;
+        }
+
+        private void AddTimestamps()
+        {
+            var entities = ChangeTracker.Entries<BaseEntity>()
+                .Where(x => x.State == EntityState.Added || x.State == EntityState.Modified);
+
+            foreach (var entity in entities)
+            {
+                var now = DateTime.UtcNow;
+
+                if (entity.State == EntityState.Added)
+                {
+                    entity.Entity.CreatedAt = now;
+                }
+                
+                entity.Entity.UpdatedAt = now;
+            }
         }
     }
 }

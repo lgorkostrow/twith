@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Twith.Domain.Common.Exceptions;
 using Twith.Domain.Twith.Repositories;
 
 namespace Twith.Infrastructure.Data.Repositories
@@ -12,11 +13,17 @@ namespace Twith.Infrastructure.Data.Repositories
         {
         }
 
-        public async Task<Domain.Twith.Entities.Twith> FindAsyncWithUserLikeAsync(Guid id, Guid userId)
+        public async Task<Domain.Twith.Entities.Twith> FindOrFailWithUserLikesAsync(Guid id, Guid userId)
         {
-            return await Context.Twiths
+            var twith = await Context.Twiths
                 .Include(x => x.Likes.Where(l => l.Author.Id == userId))
                 .SingleAsync(x => x.Id == id);
+            if (twith is null)
+            {
+                throw new EntityNotFoundException(nameof(Domain.Twith.Entities.Twith));
+            }
+            
+            return twith;
         }
     }
 }  

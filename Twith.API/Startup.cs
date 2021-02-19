@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Twith.API.Authorizations.Handlers;
 using Twith.Application.Service;
 using Twith.Domain.Twith.Repositories;
 using Twith.Domain.User.Repositories;
@@ -50,12 +52,13 @@ namespace Twith.API
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Twith.API", Version = "v1"}); });
 
-            ConfigureIdentity(services);
-
             // Domain
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITwithRepository, TwithRepository>();
             services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
+            
+            ConfigureIdentity(services);
+            ConfigureAuthorization(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,7 +96,13 @@ namespace Twith.API
                 .AddDefaultTokenProviders();
 
             var key = Encoding.ASCII.GetBytes("asdasdasdasdasdasd");
-            services.AddAuthentication(config => { config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme; })
+            services
+                .AddAuthentication(config =>
+                {
+                    config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
                 .AddJwtBearer(config =>
                 {
                     config.RequireHttpsMetadata = false;
@@ -106,6 +115,11 @@ namespace Twith.API
                         ValidateAudience = false
                     };
                 });
+        }
+
+        public void ConfigureAuthorization(IServiceCollection services)
+        {
+            services.AddScoped<IAuthorizationHandler, SameTwithAuthorAuthorizationHandler>();
         }
     }
 }

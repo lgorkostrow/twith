@@ -15,7 +15,7 @@ namespace Twith.Infrastructure.Data.Repositories
             Context = context;
         }
 
-        public async Task<TEntity> FindAsync(Guid id)
+        public async Task<TEntity?> FindAsync(Guid id)
         {
             return await Context.FindAsync<TEntity>(id);
         }
@@ -45,6 +45,12 @@ namespace Twith.Infrastructure.Data.Repositories
             await Context.SaveEntitiesAsync();
 
             return entity;
+        }
+
+        public async Task DeleteAsync(TEntity entity)
+        {
+            Context.Remove(entity);
+            await Context.SaveEntitiesAsync();
         }
         
         public async Task SaveEntitiesAsync()

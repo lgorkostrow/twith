@@ -17,7 +17,7 @@ namespace Twith.Application.Commands.Twith
 
         public async Task<Unit> Handle(UnlikeTwithCommand request, CancellationToken cancellationToken)
         {
-            var twith = await _twithRepository.FindAsyncWithUserLikeAsync(request.TwithId, request.UserId);
+            var twith = await _twithRepository.FindOrFailWithUserLikesAsync(request.TwithId, request.UserId);
 
             twith.Unlike(request.UserId);
 

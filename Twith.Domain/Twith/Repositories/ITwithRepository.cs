@@ -6,6 +6,6 @@ namespace Twith.Domain.Twith.Repositories
 {
     public interface ITwithRepository : IBaseRepository<Entities.Twith>
     {
-        public Task<Entities.Twith> FindAsyncWithUserLikeAsync(Guid id, Guid userId);
+        public Task<Entities.Twith> FindOrFailWithUserLikesAsync(Guid id, Guid userId);
     }
 }

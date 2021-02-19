@@ -4,6 +4,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Twith.API.Attributes;
+using Twith.API.Authorizations.Handlers;
 using Twith.API.Requests.Twith;
 using Twith.Domain.Twith.Commands;
 using Twith.Domain.Twith.Queries;
@@ -53,9 +55,8 @@ namespace Twith.API.Controllers.Twith
         public async Task<ActionResult> Like([FromRoute] Guid id)
         {
             var userId = Guid.Parse(_userManager.GetUserId(User));
-            var command = new LikeTwithCommand(id, userId);
-
-            await CommandAsync(command);
+            
+            await CommandAsync(new LikeTwithCommand(id, userId));
 
             return Ok(await QueryAsync(new GetTwithQuery(id, userId)));
         }
@@ -65,11 +66,30 @@ namespace Twith.API.Controllers.Twith
         public async Task<ActionResult> Unlike([FromRoute] Guid id)
         {
             var userId = Guid.Parse(_userManager.GetUserId(User));
-            var command = new UnlikeTwithCommand(id, userId);
-
-            await CommandAsync(command);
+            
+            await CommandAsync(new UnlikeTwithCommand(id, userId));
 
             return Ok(await QueryAsync(new GetTwithQuery(id, userId)));
+        }
+        
+        [HttpPut]
+        [Route("{id}")]
+        [AuthorizeResource(typeof(SameAuthorRequirement))]
+        public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] UpdateTwithRequest request)
+        {
+            await CommandAsync(new UpdateTwithCommand(id, request.Content));
+
+            return Ok(await QueryAsync(new GetTwithQuery(id, Guid.Parse(_userManager.GetUserId(User)))));
+        }
+        
+        [HttpDelete]
+        [Route("{id}")]
+        [AuthorizeResource(typeof(SameAuthorRequirement))]
+        public async Task<ActionResult> Delete([FromRoute] Guid id)
+        {
+            await CommandAsync(new DeleteTwithCommand(id));
+
+            return NoContent();
         }
     }
 }

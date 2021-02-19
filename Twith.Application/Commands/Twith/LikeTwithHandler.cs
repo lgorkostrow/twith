@@ -21,7 +21,7 @@ namespace Twith.Application.Commands.Twith
 
         public async Task<Unit> Handle(LikeTwithCommand request, CancellationToken cancellationToken)
         {
-            var twith = await _twithRepository.FindOrFailAsync(request.TwithId);
+            var twith = await _twithRepository.FindOrFailWithUserLikesAsync(request.TwithId, request.UserId);
 
             twith.Like(new Author(
                 await _userRepository.FindOrFailAsync(request.UserId)

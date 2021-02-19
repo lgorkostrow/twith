@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Twith.API.Filters;
 
 namespace Twith.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
+    [TypeFilter(typeof(ExceptionFilter))]
     public abstract class ApiControllerBase : ControllerBase
     {
         private readonly IMediator _mediator;

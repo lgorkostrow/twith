@@ -115,6 +115,8 @@ namespace Twith.API
                         ValidateAudience = false
                     };
                 });
+
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
         }
 
         public void ConfigureAuthorization(IServiceCollection services)

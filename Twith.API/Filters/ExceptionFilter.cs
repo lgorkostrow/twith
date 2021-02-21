@@ -13,7 +13,7 @@ namespace Twith.API.Filters
                 return;
             }
 
-            context.Result = new JsonResult(new {Error = context.Exception.Message})
+            context.Result = new JsonResult(new {Error = new {context.Exception.Message}})
             {
                 StatusCode = 400,
             };

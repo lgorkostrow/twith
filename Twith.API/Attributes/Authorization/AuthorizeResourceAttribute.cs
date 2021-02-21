@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Twith.API.Attributes
+namespace Twith.API.Attributes.Authorization
 {
     public class AuthorizeResourceAttribute : TypeFilterAttribute 
     {

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using Bogus;
-using Twith.Domain.Common.Events;
 using Twith.Domain.Twith.Events;
 using Twith.Domain.Twith.Exceptions;
 using Twith.Domain.Twith.ValueObjects;
@@ -11,7 +9,7 @@ using Xunit;
 
 namespace Twith.Domain.Test.Twith.Entities
 {
-    public class TwithTest : ITest
+    public class TwithTests : ITest
     {
         private readonly Faker _faker;
 

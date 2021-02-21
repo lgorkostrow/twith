@@ -1,5 +1,5 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Twith.API.Attributes.Validation;
 
 namespace Twith.API.Requests.Auth
 {
@@ -8,6 +8,7 @@ namespace Twith.API.Requests.Auth
         [Required]
         [StringLength(255)]
         [EmailAddress]
+        [UniqueEmail]
         public string? Email { get; set; }
 
         [Required]
@@ -25,6 +26,7 @@ namespace Twith.API.Requests.Auth
         
         [Required]
         [StringLength(100)]
+        [UniqueNickName]
         public string? NickName { get; set; }
     }
 }

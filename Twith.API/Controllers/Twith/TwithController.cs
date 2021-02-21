@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Twith.API.Attributes;
+using Twith.API.Attributes.Authorization;
 using Twith.API.Authorizations.Handlers;
 using Twith.API.Requests.Twith;
 using Twith.Domain.Twith.Commands;

@@ -31,6 +31,7 @@ namespace Twith.Application.Queries.Twith
                     t.Content.Value,
                     (DateTime) t.CreatedAt,
                     new AuthorDto(t.Author),
+                    EF.Property<int>(t, "_likesCount"),
                     _context.Likes.Any(l => l.Twith.Id == t.Id && l.Author.Id == request.CurrentUserId)           
                 ))
                 .AsNoTracking()

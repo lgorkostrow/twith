@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Twith.Domain.Common.Exceptions;
 using Twith.Domain.Twith.Dtos;
 using Twith.Domain.Twith.Queries;
 using Twith.Infrastructure.Data;
@@ -20,10 +21,16 @@ namespace Twith.Application.Queries.Twith
 
         public async Task<AuthorDto> Handle(GetTwithAuthorQuery request, CancellationToken cancellationToken)
         {
-            return await _context.Twiths.Where(t => t.Id == request.Id)
+            var author = await _context.Twiths.Where(t => t.Id == request.Id)
                 .Select(t => new AuthorDto(t.Author))
                 .AsNoTracking()
                 .FirstOrDefaultAsync(cancellationToken: cancellationToken);
+            if (author is null)
+            {
+                throw new EntityNotFoundException(nameof(Domain.Twith.Entities.Twith));
+            }
+
+            return author;
         }
     }
 }

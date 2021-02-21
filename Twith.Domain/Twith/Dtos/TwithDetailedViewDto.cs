@@ -9,8 +9,9 @@ namespace Twith.Domain.Twith.Dtos
             string content,
             DateTime createdAt,
             AuthorDto author,
+            int likesCount,
             bool liked
-        ) : base(id, content, createdAt, author, liked)
+        ) : base(id, content, createdAt, author, likesCount, liked)
         {
         }
     }

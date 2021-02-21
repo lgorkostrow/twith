@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Twith.Domain.Common.Exceptions;
 using Twith.Domain.Twith.Queries;
 
 namespace Twith.API.Authorizations.Handlers
@@ -24,7 +25,6 @@ namespace Twith.API.Authorizations.Handlers
         )
         {
             var twithAuthor = await _mediator.Send(new GetTwithAuthorQuery(twithId));
-            
             if (Guid.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)) == twithAuthor.Id)
             {
                 context.Succeed(requirement);

@@ -2,7 +2,7 @@
 {
     public class EntityNotFoundException : DomainException
     {
-        public EntityNotFoundException(string message) : base(message)
+        public EntityNotFoundException(string entity) : base($"Entity {entity} not found")
         {
         }
     }

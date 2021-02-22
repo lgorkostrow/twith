@@ -13,7 +13,7 @@ namespace Twith.Domain.Test.Twith.Entities
     {
         private readonly Faker _faker;
 
-        public TwithTest()
+        public TwithTests()
         {
             _faker = new Faker();
         }

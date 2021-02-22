@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Twith.Domain.Common.Exceptions;
 using Twith.Domain.Twith.Queries;
 
 namespace Twith.API.Authorizations.Handlers

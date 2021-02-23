@@ -13,7 +13,7 @@ services:
       context: .
       dockerfile: docker/app/Dockerfile
     ports:
-      - "4001:80"
+      - "5001:80"
     environment:
       - ConnectionStrings:DefaultConnection=${CONNECTIONSTRINGS_DEFAULTCONNECTION}
       - ConnectionStrings:IdentityConnection=${CONNECTIONSTRINGS_IDENTITYCONNECTION}

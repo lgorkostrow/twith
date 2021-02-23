@@ -15,4 +15,4 @@ Twith is a simple Twitter clone, build with `ASP.NET Core 5` and `PostgreSQL`
 * Terminal: `dotnet test`
 
 # Swagger (Dev env only)
-* http://localhost:5000/swagger
+* http://localhost:5001/swagger

@@ -6,6 +6,7 @@ ProjectSection(SolutionItems) = preProject
 	src\docker-compose.yml = src\docker-compose.yml
 	src\docker = src\docker
 	src\.dockerignore = src\.dockerignore
+	src\.env.dist = src\.env.dist
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.API", "src\Twith.API\Twith.API.csproj", "{0B0A173F-35CB-45BD-8659-473CA26FF004}"

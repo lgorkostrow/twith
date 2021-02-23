@@ -15,9 +15,9 @@ services:
     ports:
       - "8000:80"
     environment:
-      ConnectionStrings:DefaultConnection: "Host=postgres_image;Database=twith;Username=postgres;Password=pass;"
-      ConnectionStrings:IdentityConnection: "Host=postgres_image;Database=twith_identity;Username=postgres;Password=pass;"
-      ASPNETCORE_ENVIRONMENT: "Development"
+      - ConnectionStrings:DefaultConnection=${CONNECTIONSTRINGS_DEFAULTCONNECTION}
+      - ConnectionStrings:IdentityConnection=${CONNECTIONSTRINGS_IDENTITYCONNECTION}
+      - ASPNETCORE_ENVIRONMENT=${APP_ENVIRONMENT}
     networks:
       - dockerapi-dev
 
@@ -27,7 +27,7 @@ services:
       - "5432"
     restart: always
     environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "pass"
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     networks:
       - dockerapi-dev

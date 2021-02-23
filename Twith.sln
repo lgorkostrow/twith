@@ -1,16 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.API", "Twith.API\Twith.API.csproj", "{0B0A173F-35CB-45BD-8659-473CA26FF004}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Src", "Src", "{1572E273-3ADB-4E50-85A0-313E8D684FD2}"
+ProjectSection(SolutionItems) = preProject
+	src = src
+	src\docker-compose.yml = src\docker-compose.yml
+	src\docker = src\docker
+	src\.dockerignore = src\.dockerignore
+EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Domain", "Twith.Domain\Twith.Domain.csproj", "{F1463602-2A61-44D5-B6EF-FFA5D3FD6260}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.API", "src\Twith.API\Twith.API.csproj", "{0B0A173F-35CB-45BD-8659-473CA26FF004}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Infrastructure", "Twith.Infrastructure\Twith.Infrastructure.csproj", "{AE5B709E-296C-417E-B496-E5201B7B9A5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Domain", "src\Twith.Domain\Twith.Domain.csproj", "{F1463602-2A61-44D5-B6EF-FFA5D3FD6260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Application", "Twith.Application\Twith.Application.csproj", "{C0020E13-813D-416E-9933-4087B41E1D20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Infrastructure", "src\Twith.Infrastructure\Twith.Infrastructure.csproj", "{AE5B709E-296C-417E-B496-E5201B7B9A5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Domain.Test", "Twith.Domain.Test\Twith.Domain.Test.csproj", "{30D51756-3187-4FAA-8A5F-0371DB84DDA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Application", "src\Twith.Application\Twith.Application.csproj", "{C0020E13-813D-416E-9933-4087B41E1D20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Test.Helpers", "Twith.Test.Helpers\Twith.Test.Helpers.csproj", "{22AF1B81-6277-4B30-97C5-761FFD230899}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Domain.Test", "src\Twith.Domain.Test\Twith.Domain.Test.csproj", "{30D51756-3187-4FAA-8A5F-0371DB84DDA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Test.Helpers", "src\Twith.Test.Helpers\Twith.Test.Helpers.csproj", "{22AF1B81-6277-4B30-97C5-761FFD230899}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

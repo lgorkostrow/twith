@@ -1,0 +1,33 @@
+﻿version: '3.4'
+
+networks:
+  dockerapi-dev:
+    driver: bridge
+
+services:
+  dockerapi:
+    image: dockerapi:latest
+    depends_on:
+      - "postgres_image"
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    ports:
+      - "8000:80"
+    environment:
+      ConnectionStrings:DefaultConnection: "Host=postgres_image;Database=twith;Username=postgres;Password=pass;"
+      ConnectionStrings:IdentityConnection: "Host=postgres_image;Database=twith_identity;Username=postgres;Password=pass;"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    networks:
+      - dockerapi-dev
+
+  postgres_image:
+    image: postgres:latest
+    ports:
+      - "5432"
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "pass"
+    networks:
+      - dockerapi-dev

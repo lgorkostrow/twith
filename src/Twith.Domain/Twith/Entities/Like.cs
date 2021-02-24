@@ -8,7 +8,7 @@ namespace Twith.Domain.Twith.Entities
     {
         public Guid Id { get; }
 
-        public virtual Twith Twith { get; }
+        public Twith Twith { get; }
         
         public Author Author { get; }
 

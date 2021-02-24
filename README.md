@@ -1,5 +1,5 @@
 # Twith Project
-Twith is a simple Twitter clone, build with `ASP.NET Core 5` and `PostgreSQL` 
+Twith is a simple Twitter clone, built with `ASP.NET Core 5` and `PostgreSQL` 
 
 # Design Patterns
 * Domain Driven Design

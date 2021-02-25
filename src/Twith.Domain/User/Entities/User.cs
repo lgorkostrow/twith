@@ -1,6 +1,7 @@
 ﻿using System;
 using Twith.Domain.Common.Entities;
 using Twith.Domain.Common.ValueObjects;
+using Twith.Domain.User.Events;
 using Twith.Domain.User.ValueObjects;
 
 namespace Twith.Domain.User.Entities
@@ -11,9 +12,9 @@ namespace Twith.Domain.User.Entities
 
         public Email Email { get; }
 
-        public Name FirstName { get; }
+        public Name FirstName { get; private set; }
 
-        public Name LastName { get; }
+        public Name LastName { get; private set; }
 
         public NickName NickName { get; }
 
@@ -28,6 +29,14 @@ namespace Twith.Domain.User.Entities
             FirstName = firstName;
             LastName = lastName;
             NickName = nickName;
+        }
+
+        public void UpdatePersonalData(Name firstName, Name lastName)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            
+            RaiseEvent(new UserPersonalDataChangedEvent(Id, FirstName, LastName));
         }
     }
 }

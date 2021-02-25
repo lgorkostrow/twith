@@ -17,6 +17,8 @@ services:
     environment:
       - ConnectionStrings:DefaultConnection=${CONNECTIONSTRINGS_DEFAULTCONNECTION}
       - ConnectionStrings:IdentityConnection=${CONNECTIONSTRINGS_IDENTITYCONNECTION}
+      - JWT:SecretKey=${JWT_SECRET_KEY}
+      - JWT:TTL=${JWT_TTL}
       - ASPNETCORE_ENVIRONMENT=${APP_ENVIRONMENT}
     networks:
       - dockerapi-dev

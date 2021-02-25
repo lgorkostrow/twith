@@ -11,19 +11,20 @@ namespace Twith.Infrastructure.Identity
 {
     public class IdentityTokenClaimService : ITokenClaimsService
     {
-        private readonly string _jwtSecretKey;
+        private readonly byte[] _jwtSecretKey;
+        private readonly int _ttl;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public IdentityTokenClaimService(string jwtSecretKey, UserManager<ApplicationUser> userManager)
+        public IdentityTokenClaimService(byte[] jwtSecretKey, int ttl, UserManager<ApplicationUser> userManager)
         {
             _jwtSecretKey = jwtSecretKey;
+            _ttl = ttl;
             _userManager = userManager;
         }
 
         public async Task<string> GetTokenAsync(string userName)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_jwtSecretKey);
             var user = await _userManager.FindByNameAsync(userName);
             var roles = await _userManager.GetRolesAsync(user);
             var claims = new List<Claim> {new Claim(ClaimTypes.Name, userName), new Claim(ClaimTypes.NameIdentifier, user.Id)};
@@ -36,8 +37,8 @@ namespace Twith.Infrastructure.Identity
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims.ToArray()),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
+                Expires = DateTime.UtcNow.AddSeconds(_ttl),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(_jwtSecretKey),
                     SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);

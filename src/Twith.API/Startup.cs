@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -43,22 +45,27 @@ namespace Twith.API
             services.AddControllers();
 
             services.AddMediatR(AppDomain.CurrentDomain.Load("Twith.Application"));
-            
-            Console.WriteLine(Configuration.GetValue<string>("ConnectionStrings:DefaultConnection"));
-            
+
             services.AddDbContext<ApplicationDbContext>(
                 options => options
                     .UseNpgsql("name=ConnectionStrings:DefaultConnection")
                     .UseSnakeCaseNamingConvention()
                     .EnableSensitiveDataLogging(Configuration.GetValue<bool>("Logging:EnableSqlParameterLogging")));
 
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Twith.API", Version = "v1"}); });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Twith.API", Version = "v1"});
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);     
+                c.EnableAnnotations();
+            });
 
             // Domain
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITwithRepository, TwithRepository>();
             services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
-            
+
             ConfigureIdentity(services);
             ConfigureAuthorization(services);
         }
@@ -84,9 +91,15 @@ namespace Twith.API
 
         public void ConfigureIdentity(IServiceCollection services)
         {
+            var jwtSecretKey = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("JWT:SecretKey"));
+
             services.AddScoped<ITokenClaimsService>(x =>
-                new IdentityTokenClaimService("asdasdasdasdasdasd",
-                    x.GetRequiredService<UserManager<ApplicationUser>>()));
+                new IdentityTokenClaimService(
+                    jwtSecretKey,
+                    Configuration.GetValue<int>("JWT:TTL"),
+                    x.GetRequiredService<UserManager<ApplicationUser>>()
+                )
+            );
 
             services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseNpgsql("name=ConnectionStrings:IdentityConnection")
@@ -97,7 +110,6 @@ namespace Twith.API
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
-            var key = Encoding.ASCII.GetBytes("asdasdasdasdasdasd");
             services
                 .AddAuthentication(config =>
                 {
@@ -112,7 +124,7 @@ namespace Twith.API
                     config.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        IssuerSigningKey = new SymmetricSecurityKey(jwtSecretKey),
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };

@@ -15,17 +15,22 @@ namespace Twith.API
 {
     public class Program
     {
+        private const string EnableMigrations = "--enable-migrations";
+        
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
 
-            using (var scope = host.Services.CreateScope())
+            if (args.Contains(EnableMigrations))
             {
-                var applicationDbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                applicationDbContext.Database.Migrate();
+                using (var scope = host.Services.CreateScope())
+                {
+                    var applicationDbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                    applicationDbContext.Database.Migrate();
                 
-                var identityDbContext = scope.ServiceProvider.GetRequiredService<AppIdentityDbContext>();
-                identityDbContext.Database.Migrate();
+                    var identityDbContext = scope.ServiceProvider.GetRequiredService<AppIdentityDbContext>();
+                    identityDbContext.Database.Migrate();
+                }
             }
 
             host.Run();

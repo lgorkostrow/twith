@@ -15,8 +15,8 @@ services:
     ports:
       - "5001:80"
     environment:
-      - ConnectionStrings:DefaultConnection=${CONNECTIONSTRINGS_DEFAULTCONNECTION}
-      - ConnectionStrings:IdentityConnection=${CONNECTIONSTRINGS_IDENTITYCONNECTION}
+      - ConnectionStrings:DefaultConnection=${CONNECTION_STRINGS_DEFAULT_CONNECTION}
+      - ConnectionStrings:IdentityConnection=${CONNECTION_STRINGS_IDENTITY_CONNECTION}
       - JWT:SecretKey=${JWT_SECRET_KEY}
       - JWT:TTL=${JWT_TTL}
       - ASPNETCORE_ENVIRONMENT=${APP_ENVIRONMENT}

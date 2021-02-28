@@ -26,4 +26,4 @@ WORKDIR /app
 COPY --from=build /publish ./
 EXPOSE 80
 #EXPOSE 443
-ENTRYPOINT ["dotnet", "Twith.API.dll"]
+ENTRYPOINT ["dotnet", "Twith.API.dll", "--enable-migrations"]

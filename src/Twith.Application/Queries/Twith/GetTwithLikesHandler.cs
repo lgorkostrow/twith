@@ -24,7 +24,8 @@ namespace Twith.Application.Queries.Twith
             return _context.Likes
                 .Take(request.Limit)
                 .Skip(request.Offset)
-                .OrderByDescending(l => l.CreatedAt)
+                .OrderByDescending(l => l.Author.Id == request.CurrentUserId)
+                .ThenByDescending(l => l.CreatedAt)
                 .Where(l => l.Twith.Id == request.TwithId)
                 .Select(l => new LikeDto(l))
                 .AsNoTracking()

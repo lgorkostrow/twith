@@ -8,10 +8,13 @@ namespace Twith.Domain.Twith.Queries
     public record GetTwithLikesQuery : BaseListQuery<List<LikeDto>>
     {
         public Guid TwithId { get; }
+        
+        public Guid CurrentUserId { get; }
 
-        public GetTwithLikesQuery(int limit, int offset, Guid twithId) : base(limit, offset)
+        public GetTwithLikesQuery(int limit, int offset, Guid twithId, Guid currentUserId) : base(limit, offset)
         {
             TwithId = twithId;
+            CurrentUserId = currentUserId;
         }
     }
 }

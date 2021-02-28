@@ -102,7 +102,9 @@ namespace Twith.API.Controllers.Twith
         public async Task<ActionResult<ListResponse<LikeDto>>> GetTwithLikes([FromRoute] Guid id,
             [FromQuery] GetTwithLikesRequest request)
         {
-            var likes = await QueryAsync(new GetTwithLikesQuery(request.Limit, request.Offset, id));
+            var likes = await QueryAsync(
+                new GetTwithLikesQuery(request.Limit, request.Offset, id, Guid.Parse(_userManager.GetUserId(User)))
+            );
 
             return Ok(new ListResponse<LikeDto>(likes));
         }

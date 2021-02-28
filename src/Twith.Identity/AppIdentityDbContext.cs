@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Twith.Identity.Models;
 
-namespace Twith.Infrastructure.Identity
+namespace Twith.Identity
 {
     public class AppIdentityDbContext : IdentityDbContext<ApplicationUser>
     {

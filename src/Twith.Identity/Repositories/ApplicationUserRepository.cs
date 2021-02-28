@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Twith.Identity;
+using Twith.Identity.Repositories;
 
 namespace Twith.Infrastructure.Identity
 {

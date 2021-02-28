@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Twith.Domain.User.Queries;
-using Twith.Infrastructure.Identity;
+using Twith.Identity.Repositories;
 
 namespace Twith.API.Attributes.Validation
 {

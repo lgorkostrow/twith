@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Twith.Infrastructure.Identity.Migrations
+namespace Twith.Identity.Migrations
 {
     public partial class SnakeCaseIdentitySchema : Migration
     {

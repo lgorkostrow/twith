@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Twith.Infrastructure.Identity.Migrations
+namespace Twith.Identity.Migrations
 {
-    public partial class ApplicatoinUser : Migration
+    public partial class ApplicationUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

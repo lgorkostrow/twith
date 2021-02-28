@@ -11,7 +11,7 @@ using Twith.API.Responses;
 using Twith.Domain.Twith.Commands;
 using Twith.Domain.Twith.Dtos;
 using Twith.Domain.Twith.Queries;
-using Twith.Infrastructure.Identity;
+using Twith.Identity.Models;
 
 namespace Twith.API.Controllers.Twith
 {

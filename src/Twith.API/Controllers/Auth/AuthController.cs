@@ -7,7 +7,8 @@ using Twith.API.Requests.Auth;
 using Twith.API.Responses.Auth;
 using Twith.Domain.User.Commands;
 using Twith.Domain.User.Queries;
-using Twith.Infrastructure.Identity;
+using Twith.Identity.Models;
+using Twith.Identity.Services;
 
 namespace Twith.API.Controllers.Auth
 {
@@ -28,27 +29,30 @@ namespace Twith.API.Controllers.Auth
             _userManager = userManager;
             _tokenClaimsService = tokenClaimsService;
         }
-        
+
         [HttpPost]
         [Route("sign-in")]
         public async Task<ActionResult<AuthResponse>> SignIn([FromBody] SignInRequest request)
         {
             var result = await _signInManager.PasswordSignInAsync(request.Email, request.Password, false, true);
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
-                var user = await QueryAsync(new GetUserByEmailQuery(request.Email));
-                
-                return Ok(new AuthResponse(
-                    user.Id,
-                    user.Email,
-                    user.FirstName,
-                    user.LastName,
-                    user.NickName,
-                    await _tokenClaimsService.GetTokenAsync(user.Email)
-                ));
+                return BadRequest();
             }
 
-            return BadRequest();
+            var user = await QueryAsync(new GetUserByEmailQuery(request.Email));
+            var claims = _tokenClaimsService.GenerateClaimsIdentityForUser(
+                await _userManager.FindByIdAsync(user.Id.ToString())
+            );
+
+            return Ok(new AuthResponse(
+                user.Id,
+                user.Email,
+                user.FirstName,
+                user.LastName,
+                user.NickName,
+                _tokenClaimsService.GetTokenAsync(claims)
+            ));
         }
 
         [HttpPost]
@@ -76,6 +80,8 @@ namespace Twith.API.Controllers.Auth
                 request.NickName
             );
             await CommandAsync(command);
+            
+            var claims = _tokenClaimsService.GenerateClaimsIdentityForUser(user);
 
             return Ok(new AuthResponse(
                 Guid.Parse(user.Id),
@@ -83,7 +89,7 @@ namespace Twith.API.Controllers.Auth
                 request.FirstName,
                 request.LastName,
                 request.NickName,
-                await _tokenClaimsService.GetTokenAsync(request.Email)
+                _tokenClaimsService.GetTokenAsync(claims)
             ));
         }
     }

@@ -8,7 +8,7 @@ using Twith.API.Requests.User;
 using Twith.Domain.User.Commands;
 using Twith.Domain.User.Dtos;
 using Twith.Domain.User.Queries;
-using Twith.Infrastructure.Identity;
+using Twith.Identity.Models;
 
 namespace Twith.API.Controllers.User
 {

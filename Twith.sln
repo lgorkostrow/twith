@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Src", "Src", "{1572E273-3ADB-4E50-85A0-313E8D684FD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Src", "src", "{1572E273-3ADB-4E50-85A0-313E8D684FD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "tests", "{9C026AF6-D2D8-400B-BE02-BA6F6AA493F8}"
 ProjectSection(SolutionItems) = preProject
 	src = src
 	src\docker-compose.yml = src\docker-compose.yml
@@ -17,13 +19,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Infrastructure", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Application", "src\Twith.Application\Twith.Application.csproj", "{C0020E13-813D-416E-9933-4087B41E1D20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Domain.Test", "src\Twith.Domain.Test\Twith.Domain.Test.csproj", "{30D51756-3187-4FAA-8A5F-0371DB84DDA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Domain.Test", "tests\Twith.Domain.Test\Twith.Domain.Test.csproj", "{30D51756-3187-4FAA-8A5F-0371DB84DDA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Test.Helpers", "src\Twith.Test.Helpers\Twith.Test.Helpers.csproj", "{22AF1B81-6277-4B30-97C5-761FFD230899}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Test.Helpers", "tests\Twith.Test.Helpers\Twith.Test.Helpers.csproj", "{22AF1B81-6277-4B30-97C5-761FFD230899}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.Identity", "src\Twith.Identity\Twith.Identity.csproj", "{EA580DBF-7E18-4C3D-9CF4-CAD09DB74BF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.IoC", "src\Twith.IoC\Twith.IoC.csproj", "{741C9C5E-FE9D-4028-BD9C-217C946F3357}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twith.API.Test", "tests\Twith.API.Test\Twith.API.Test.csproj", "{0A9AC622-DBEF-4732-A338-77A385AAB3D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,5 +67,9 @@ Global
 		{741C9C5E-FE9D-4028-BD9C-217C946F3357}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{741C9C5E-FE9D-4028-BD9C-217C946F3357}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{741C9C5E-FE9D-4028-BD9C-217C946F3357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A9AC622-DBEF-4732-A338-77A385AAB3D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A9AC622-DBEF-4732-A338-77A385AAB3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A9AC622-DBEF-4732-A338-77A385AAB3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A9AC622-DBEF-4732-A338-77A385AAB3D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

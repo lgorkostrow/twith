@@ -1,27 +1,17 @@
 using System;
-using System.IO;
-using System.Reflection;
-using System.Text;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Twith.API.Authorizations.Handlers;
+using Newtonsoft.Json.Serialization;
 using Twith.API.StartupExtensions;
-using Twith.Application.Service;
-using Twith.Domain.Twith.Repositories;
-using Twith.Domain.User.Repositories;
-using Twith.Infrastructure.Data;
-using Twith.Infrastructure.Data.Repositories;
-using Twith.Infrastructure.Identity;
+using Twith.API.Validation;
 using Twith.IoC;
 
 namespace Twith.API
@@ -29,13 +19,13 @@ namespace Twith.API
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        
+
         private readonly IWebHostEnvironment _env;
 
         public Startup(IWebHostEnvironment env)
         {
             _env = env;
-            
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", false, true)
@@ -49,7 +39,11 @@ namespace Twith.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            services
+                .AddMvc(options => options.ModelMetadataDetailsProviders.Add(new ApiValidationMetadataProvider()))
+                .AddNewtonsoftJson(mvcNewtonsoftJsonOptions =>
+                    mvcNewtonsoftJsonOptions.UseCamelCasing(true));
+            
             services.AddMediatR(AppDomain.CurrentDomain.Load("Twith.Application"));
 
             // Database
@@ -57,10 +51,10 @@ namespace Twith.API
 
             // Swagger UI
             services.AddCustomizedSwagger();
-            
+
             // Auth
             services.AddCustomizedAuth(Configuration);
-            
+
             IoCConfiguration.RegisterServices(services);
         }
 
@@ -70,7 +64,7 @@ namespace Twith.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                
+
                 // Swagger UI
                 app.UseCustomizedSwagger();
             }

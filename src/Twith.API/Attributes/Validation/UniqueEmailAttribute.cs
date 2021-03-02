@@ -5,15 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Twith.API.Validation;
 using Twith.Domain.User.Queries;
 using Twith.Identity.Repositories;
 
 namespace Twith.API.Attributes.Validation
 {
-    public class UniqueEmail : ValidationAttribute
+    public class UniqueEmailAttribute : ValidationAttribute
     {
-        public string GetErrorMessage() => "Email is not unique";
-
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             if (value is null)
@@ -41,7 +40,7 @@ namespace Twith.API.Attributes.Validation
                 .Result;
 
             return result
-                ? new ValidationResult(GetErrorMessage())
+                ? new ValidationResult(ValidationErrors.NotUniqueError)
                 : ValidationResult.Success;
         }
     }

@@ -2,14 +2,13 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Twith.API.Validation;
 using Twith.Domain.User.Queries;
 
 namespace Twith.API.Attributes.Validation
 {
-    public class UniqueNickName : ValidationAttribute
+    public class UniqueNickNameAttribute : ValidationAttribute
     {
-        public string GetErrorMessage() => "NickName is not unique";
-
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             if (value is null)
@@ -23,7 +22,7 @@ namespace Twith.API.Attributes.Validation
                 .Result;
 
             return result
-                ? new ValidationResult(GetErrorMessage())
+                ? new ValidationResult(ValidationErrors.NotUniqueError)
                 : ValidationResult.Success;
         }
     }

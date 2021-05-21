@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Twith.API.Requests.Auth;
 using Twith.API.Responses.Auth;
-using Twith.Domain.User.Commands;
-using Twith.Domain.User.Queries;
+using Twith.Application.Commands.User;
+using Twith.Application.Queries.User;
 using Twith.Identity.Models;
 using Twith.Identity.Services;
 
@@ -51,7 +51,7 @@ namespace Twith.API.Controllers.Auth
                 user.FirstName,
                 user.LastName,
                 user.NickName,
-                _tokenClaimsService.GetTokenAsync(claims)
+                _tokenClaimsService.GetToken(claims)
             ));
         }
 
@@ -89,7 +89,7 @@ namespace Twith.API.Controllers.Auth
                 request.FirstName,
                 request.LastName,
                 request.NickName,
-                _tokenClaimsService.GetTokenAsync(claims)
+                _tokenClaimsService.GetToken(claims)
             ));
         }
     }

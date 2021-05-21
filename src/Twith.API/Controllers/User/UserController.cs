@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Twith.API.Requests.User;
-using Twith.Domain.User.Commands;
+using Twith.Application.Commands.User;
+using Twith.Application.Queries.User;
 using Twith.Domain.User.Dtos;
-using Twith.Domain.User.Queries;
 using Twith.Identity.Models;
 
 namespace Twith.API.Controllers.User

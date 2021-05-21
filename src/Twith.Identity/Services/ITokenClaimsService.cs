@@ -7,6 +7,6 @@ namespace Twith.Identity.Services
     {
         public ClaimsIdentity GenerateClaimsIdentityForUser(ApplicationUser user);
         
-        public string GetTokenAsync(ClaimsIdentity claimsIdentity);
+        public string GetToken(ClaimsIdentity claimsIdentity);
     }
 }

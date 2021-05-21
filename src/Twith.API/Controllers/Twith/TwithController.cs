@@ -8,9 +8,9 @@ using Twith.API.Attributes.Authorization;
 using Twith.API.Authorizations.Handlers;
 using Twith.API.Requests.Twith;
 using Twith.API.Responses;
-using Twith.Domain.Twith.Commands;
+using Twith.Application.Commands.Twith;
+using Twith.Application.Queries.Twith;
 using Twith.Domain.Twith.Dtos;
-using Twith.Domain.Twith.Queries;
 using Twith.Identity.Models;
 
 namespace Twith.API.Controllers.Twith

@@ -1,11 +1,24 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Twith.Domain.Twith.Commands;
 using Twith.Domain.Twith.Repositories;
 
 namespace Twith.Application.Commands.Twith
 {
+    public record UnlikeTwithCommand : IRequest
+    {
+        public Guid TwithId { get; }
+        
+        public Guid UserId { get; }
+
+        public UnlikeTwithCommand(Guid twithId, Guid userId)
+        {
+            TwithId = twithId;
+            UserId = userId;
+        }
+    }
+    
     public class UnlikeTwithHandler : IRequestHandler<UnlikeTwithCommand>
     {
         private readonly ITwithRepository _twithRepository;

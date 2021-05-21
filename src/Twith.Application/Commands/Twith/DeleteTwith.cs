@@ -1,11 +1,21 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Twith.Domain.Twith.Commands;
 using Twith.Domain.Twith.Repositories;
 
 namespace Twith.Application.Commands.Twith
 {
+    public class DeleteTwithCommand : IRequest
+    {
+        public Guid TwithId { get; }
+
+        public DeleteTwithCommand(Guid twithId)
+        {
+            TwithId = twithId;
+        }
+    }
+    
     public class DeleteTwithHandler : IRequestHandler<DeleteTwithCommand>
     {
         private readonly ITwithRepository _repository;

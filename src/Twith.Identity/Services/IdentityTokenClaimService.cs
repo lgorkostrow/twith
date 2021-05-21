@@ -26,7 +26,7 @@ namespace Twith.Identity.Services
             });
         }
         
-        public string GetTokenAsync(ClaimsIdentity claimsIdentity)
+        public string GetToken(ClaimsIdentity claimsIdentity)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenDescriptor = new SecurityTokenDescriptor

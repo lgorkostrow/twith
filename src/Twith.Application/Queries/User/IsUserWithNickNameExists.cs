@@ -2,11 +2,20 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Twith.Domain.User.Queries;
 using Twith.Infrastructure.Data;
 
 namespace Twith.Application.Queries.User
 {
+    public record IsUserWithNickNameExistsQuery : IRequest<bool>
+    {
+        public string NickName { get; }
+        
+        public IsUserWithNickNameExistsQuery(string nickName)
+        {
+            NickName = nickName;
+        }
+    }
+    
     public class IsUserWithNickNameExistsHandler : IRequestHandler<IsUserWithNickNameExistsQuery, bool>
     {
         private readonly ApplicationDbContext _context;

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Twith.API.Test.Helpers;
 using Twith.Identity;
 using Twith.Infrastructure.Data;
 
@@ -14,7 +15,7 @@ namespace Twith.API.Test
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            builder.ConfigureServices(services =>
+            builder.ConfigureServices(async services =>
             {
                 services.Remove(services.SingleOrDefault(
                     d => d.ServiceType ==
@@ -49,7 +50,7 @@ namespace Twith.API.Test
 
                     try
                     {
-                        // Utilities.InitializeDbForTests(db);
+                        await Utils.Initialize(applicationDb, identityDb);
                     }
                     catch (Exception ex)
                     {

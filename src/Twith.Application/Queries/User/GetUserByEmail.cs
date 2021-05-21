@@ -4,11 +4,20 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Twith.Domain.User.Dtos;
-using Twith.Domain.User.Queries;
 using Twith.Infrastructure.Data;
 
 namespace Twith.Application.Queries.User
 {
+    public record GetUserByEmailQuery : IRequest<UserDetailedViewDto>
+    {
+        public string Email { get; }
+
+        public GetUserByEmailQuery(string email)
+        {
+            Email = email;
+        }
+    }
+    
     public class GetUserByEmailHandler : IRequestHandler<GetUserByEmailQuery, UserDetailedViewDto>
     {
         private readonly ApplicationDbContext _context;
@@ -20,17 +29,16 @@ namespace Twith.Application.Queries.User
 
         public Task<UserDetailedViewDto> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken)
         {
-            return (from u in _context.Users
-                    where u.Email.Value.Equals(request.Email)
-                    select new UserDetailedViewDto(
-                        u.Id,
-                        u.Email.Value,
-                        u.FirstName.Value,
-                        u.LastName.Value,
-                        u.NickName.Value)
+            return _context.Users.Where(u => u.Email.Value.Equals(request.Email))
+                .Select(u => new UserDetailedViewDto(
+                    u.Id,
+                    u.Email.Value,
+                    u.FirstName.Value,
+                    u.LastName.Value,
+                    u.NickName.Value)
                 )
                 .AsNoTracking()
-                .FirstOrDefaultAsync(cancellationToken: cancellationToken);
+                .FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

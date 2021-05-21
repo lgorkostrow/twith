@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Twith.API.Validation;
-using Twith.Domain.User.Queries;
+using Twith.Application.Queries.User;
 
 namespace Twith.API.Attributes.Validation
 {

@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-
         <IsPackable>false</IsPackable>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
@@ -31,6 +31,10 @@
         <Content Update="xunit.runner.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers\Twith" />
     </ItemGroup>
 
 </Project>

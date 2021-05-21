@@ -1,15 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Twith.Domain.Common.Queries;
 using Twith.Domain.Twith.Dtos;
-using Twith.Domain.Twith.Queries;
 using Twith.Infrastructure.Data;
 
 namespace Twith.Application.Queries.Twith
 {
+    public record GetTwithLikesQuery : BaseListQuery<List<LikeDto>>
+    {
+        public Guid TwithId { get; }
+        
+        public Guid CurrentUserId { get; }
+
+        public GetTwithLikesQuery(int limit, int offset, Guid twithId, Guid currentUserId) : base(limit, offset)
+        {
+            TwithId = twithId;
+            CurrentUserId = currentUserId;
+        }
+    }
+    
     public class GetTwithLikesHandler : IRequestHandler<GetTwithLikesQuery, List<LikeDto>>
     {
         private readonly ApplicationDbContext _context;

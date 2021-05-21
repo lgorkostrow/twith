@@ -1,28 +1,55 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Bogus;
+using Twith.Domain.Common.ValueObjects;
 using Twith.Domain.User.Entities;
+using Twith.Domain.User.ValueObjects;
 using Twith.Identity;
+using Twith.Identity.Models;
 using Twith.Infrastructure.Data;
 
 namespace Twith.API.Test.Helpers
 {
     public static class Utils
     {
-        public static void InitializeApplicationDbForTests(ApplicationDbContext context)
+        private static readonly Faker _faker = new Faker();
+
+        public static async Task Initialize(
+            ApplicationDbContext applicationDbContext,
+            AppIdentityDbContext identityDbContext
+        )
         {
-            
-        }
-        
-        public static void InitializeIdentityDbForTests(AppIdentityDbContext context)
-        {
-            
+            var applicationUsers = GenerateApplicationUsers();
+            var users = GenerateUsers(applicationUsers);
+
+            await identityDbContext.AddRangeAsync(applicationUsers);
+            await applicationDbContext.AddRangeAsync(users);
         }
 
-        private static IList<User> GetUsers()
+        private static IEnumerable<User> GenerateUsers(IEnumerable<ApplicationUser> applicationUsers)
         {
-            return new List<User>()
+            foreach (var applicationUser in applicationUsers)
             {
-                
-            };
+                yield return new User(
+                    Guid.Parse(applicationUser.Id),
+                    new Email(applicationUser.Email),
+                    new Name(_faker.Person.FirstName),
+                    new Name(_faker.Person.LastName),
+                    new NickName(_faker.Random.String2(10, 15))
+                );
+            }
+        }
+
+        private static IEnumerable<ApplicationUser> GenerateApplicationUsers(int count = 10)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                var email = _faker.Person.Email;
+
+                yield return new ApplicationUser() {UserName = email, Email = email, EmailConfirmed = true};
+            }
         }
     }
 }

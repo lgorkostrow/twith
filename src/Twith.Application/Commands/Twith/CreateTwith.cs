@@ -1,13 +1,29 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Twith.Domain.Twith.Commands;
 using Twith.Domain.Twith.Factories;
 using Twith.Domain.Twith.Repositories;
 using Twith.Domain.User.Repositories;
 
 namespace Twith.Application.Commands.Twith
 {
+    public record CreateTwithCommand : IRequest
+    {
+        public Guid Id { get; }
+        
+        public string Content { get; }
+        
+        public Guid AuthorId { get; }
+
+        public CreateTwithCommand(Guid id, string content, Guid authorId)
+        {
+            Id = id;
+            Content = content;
+            AuthorId = authorId;
+        }
+    }
+    
     public class CreateTwithHandler : IRequestHandler<CreateTwithCommand>
     {
         private readonly ITwithRepository _twithRepository;

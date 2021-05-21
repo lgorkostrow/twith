@@ -1,39 +1,29 @@
 ﻿using System.Collections.Generic;
-using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Bogus;
-using Newtonsoft.Json;
 using Twith.API.Requests.Auth;
 using Twith.API.Responses.Auth;
 using Twith.API.Test.Helpers;
 using Twith.API.Validation;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Twith.API.Test.Controllers.Auth
 {
-    public class AuthControllerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class AuthControllerTest : AbstractApiControllerTest
     {
-        private readonly CustomWebApplicationFactory<Startup> _factory;
-        private readonly ITestOutputHelper _testOutputHelper;
-
-        public AuthControllerTest(CustomWebApplicationFactory<Startup> factory, ITestOutputHelper testOutputHelper)
+        public AuthControllerTest(CustomWebApplicationFactory<Startup> factory) : base(factory)
         {
-            _factory = factory;
-            _testOutputHelper = testOutputHelper;
         }
-
+        
         [Theory]
         [MemberData(nameof(GetInvalidAuthData))]
         public async Task ShouldReturnValidationErrors(SignUpRequest request, IDictionary<string, string> errors)
         {
-            var client = _factory.CreateClient();
-
-            var httpResponse = await client.PostAsJsonAsync("/api/auth/sign-up", request);
-            var errorsApiResponse = JsonConvert.DeserializeObject<ValidationErrorsApiResponse>(
+            var httpResponse = await SendPostAsync("/api/auth/sign-up", request);
+            var errorsApiResponse = Deserialize<ValidationErrorsApiResponse>(
                 await httpResponse.Content.ReadAsStringAsync()
             );
-
+            
             Assert.Equal(400, errorsApiResponse.Status);
 
             foreach (var (key, error) in errors)
@@ -57,10 +47,8 @@ namespace Twith.API.Test.Controllers.Auth
                 NickName = faker.Random.String2(15, 15),
             };
             
-            var client = _factory.CreateClient();
-
-            var httpResponse = await client.PostAsJsonAsync("/api/auth/sign-up", request);
-            var response = JsonConvert.DeserializeObject<AuthResponse>(
+            var httpResponse = await SendPostAsync("/api/auth/sign-up", request);
+            var response = Deserialize<AuthResponse>(
                 await httpResponse.Content.ReadAsStringAsync()
             );
 

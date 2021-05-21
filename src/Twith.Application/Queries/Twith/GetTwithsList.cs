@@ -5,12 +5,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Twith.Domain.Common.Queries;
 using Twith.Domain.Twith.Dtos;
-using Twith.Domain.Twith.Queries;
 using Twith.Infrastructure.Data;
 
 namespace Twith.Application.Queries.Twith
 {
+    public record GetTwithsListQuery : BaseListQuery<List<TwithListViewDto>>
+    {
+        public Guid CurrentUserId { get; }
+
+        public GetTwithsListQuery(int limit, int offset, Guid currentUserId) : base(limit, offset)
+        {
+            CurrentUserId = currentUserId;
+        }
+    }
+    
     public class GetTwithsListHandler : IRequestHandler<GetTwithsListQuery, List<TwithListViewDto>>
     {
         private readonly ApplicationDbContext _context;

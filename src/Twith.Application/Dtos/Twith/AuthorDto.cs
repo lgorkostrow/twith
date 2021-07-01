@@ -1,9 +1,9 @@
 ﻿using System;
 using Twith.Domain.Twith.ValueObjects;
 
-namespace Twith.Domain.Twith.Dtos
+namespace Twith.Application.Dtos.Twith
 {
-    public class AuthorDto
+    public record AuthorDto : BaseDto
     {
         public Guid Id { get; }
 

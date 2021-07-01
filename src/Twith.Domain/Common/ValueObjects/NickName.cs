@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Twith.Domain.Common.ValueObjects
 {
-    public record NickName
+    public record NickName : BaseValueObject
     {
         public string Value { get; }
 

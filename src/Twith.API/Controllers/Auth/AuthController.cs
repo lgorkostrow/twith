@@ -7,7 +7,7 @@ using Twith.API.Requests.Auth;
 using Twith.API.Responses.Auth;
 using Twith.Application.Commands.User;
 using Twith.Application.Queries.User;
-using Twith.Identity.Models;
+using Twith.Identity.Entities;
 using Twith.Identity.Services;
 
 namespace Twith.API.Controllers.Auth

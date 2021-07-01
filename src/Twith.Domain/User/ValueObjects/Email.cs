@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Twith.Domain.Common.ValueObjects;
 
 namespace Twith.Domain.User.ValueObjects
 {
-    public record Email
+    public record Email : BaseValueObject
     {
         public string Value { get; }
 

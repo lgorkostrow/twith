@@ -3,7 +3,7 @@ using Twith.Domain.Common.ValueObjects;
 
 namespace Twith.Domain.Twith.ValueObjects
 {
-    public record Author
+    public record Author : BaseValueObject
     {
         public Guid Id { get; }
 
@@ -15,7 +15,6 @@ namespace Twith.Domain.Twith.ValueObjects
 
         protected Author()
         {
-            
         }
 
         public Author(Guid id, Name firstName, Name lastName, NickName nickName)

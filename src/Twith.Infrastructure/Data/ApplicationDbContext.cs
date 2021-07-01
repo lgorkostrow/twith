@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Twith.Domain.Common.Entities;
+using Twith.Domain.Common.Services;
 using Twith.Domain.Twith.Entities;
 using Twith.Domain.User.Entities;
 using Twith.Infrastructure.Data.EntityConfigurations;
@@ -53,19 +54,9 @@ namespace Twith.Infrastructure.Data
 
         private void AddTimestamps()
         {
-            var entities = ChangeTracker.Entries<BaseEntity>()
-                .Where(x => x.State == EntityState.Added || x.State == EntityState.Modified);
-
-            foreach (var entity in entities)
+            foreach (var entity in ChangeTracker.Entries<BaseEntity>().Where(x => x.State == EntityState.Modified))
             {
-                var now = DateTime.UtcNow;
-
-                if (entity.State == EntityState.Added)
-                {
-                    entity.Entity.CreatedAt = now;
-                }
-                
-                entity.Entity.UpdatedAt = now;
+                entity.Entity.UpdatedAt = DateTime.UtcNow;
             }
         }
     }

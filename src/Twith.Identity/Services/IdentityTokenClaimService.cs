@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Twith.Identity.Authorization;
-using Twith.Identity.Models;
+using Twith.Identity.Entities;
 
 namespace Twith.Identity.Services
 {

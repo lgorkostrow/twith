@@ -5,11 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Twith.API.Validation;
 using Twith.Application.Queries.User;
 using Twith.Identity.Repositories;
 
-namespace Twith.API.Attributes.Validation
+namespace Twith.API.Validation.Attributes
 {
     public class UniqueEmailAttribute : ValidationAttribute
     {

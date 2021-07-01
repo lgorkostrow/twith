@@ -1,20 +1,18 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Twith.Application.Service;
+using Twith.Domain.Common.Services;
 using Twith.Domain.Twith.Repositories;
 using Twith.Domain.User.Repositories;
 using Twith.Identity.Repositories;
 using Twith.Identity.Services;
-using Twith.Infrastructure.Data;
 using Twith.Infrastructure.Data.Repositories;
-using Twith.Infrastructure.Identity;
 
-namespace Twith.IoC
+namespace Twith.API.StartupExtensions
 {
-    public static class IoCConfiguration
+    public static class ServiceExtension
     {
-        public static void RegisterServices(IServiceCollection services)
+        public static void AddServices(this IServiceCollection services)
         {
-            // Infrastructure 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITwithRepository, TwithRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();

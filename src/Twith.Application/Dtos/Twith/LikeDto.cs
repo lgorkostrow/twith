@@ -1,9 +1,9 @@
 ﻿using System;
 using Twith.Domain.Twith.Entities;
 
-namespace Twith.Domain.Twith.Dtos
+namespace Twith.Application.Dtos.Twith
 {
-    public record LikeDto
+    public record LikeDto : BaseDto
     {
         public Guid Id { get; }
         

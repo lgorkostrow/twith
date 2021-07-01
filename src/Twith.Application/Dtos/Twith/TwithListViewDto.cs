@@ -1,8 +1,9 @@
 ﻿using System;
+using Twith.Domain.Common.ValueObjects;
 
-namespace Twith.Domain.Twith.Dtos
+namespace Twith.Application.Dtos.Twith
 {
-    public record TwithListViewDto
+    public record TwithListViewDto : BaseValueObject
     {
         public Guid Id { get; }
                 

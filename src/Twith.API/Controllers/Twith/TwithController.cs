@@ -4,14 +4,14 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Twith.API.Attributes.Authorization;
+using Twith.API.Authorizations.Attributes;
 using Twith.API.Authorizations.Handlers;
 using Twith.API.Requests.Twith;
 using Twith.API.Responses;
 using Twith.Application.Commands.Twith;
+using Twith.Application.Dtos.Twith;
 using Twith.Application.Queries.Twith;
-using Twith.Domain.Twith.Dtos;
-using Twith.Identity.Models;
+using Twith.Identity.Entities;
 
 namespace Twith.API.Controllers.Twith
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Twith.API.Attributes.Validation;
+using Twith.API.Validation.Attributes;
 
 namespace Twith.API.Validation
 {
@@ -10,6 +10,7 @@ namespace Twith.API.Validation
         public static string NotUniqueError => "NOT_UNIQUE_ERROR";
         public static string LengthError => "LENGTH_ERROR";
         public static string InvalidEmailError => "INVALID_EMAIL_ERROR";
+        public static string RangeError => "RANGE_ERROR";
 
         public static string MapAttributeToConstant(ValidationAttribute attribute)
         {
@@ -26,6 +27,8 @@ namespace Twith.API.Validation
                 case MinLengthAttribute:
                 case MaxLengthAttribute:
                     return LengthError;
+                case RangeAttribute:
+                    return RangeError;
                 default:
                     throw new ArgumentException("Attribute not implemented", attribute.GetType().Name);
             }

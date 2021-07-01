@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Twith.Domain.User.Dtos
+namespace Twith.Application.Dtos.User
 {
-    public record UserDetailedViewDto
+    public record UserDetailedViewDto : BaseDto
     {
         public Guid Id { get; }
 

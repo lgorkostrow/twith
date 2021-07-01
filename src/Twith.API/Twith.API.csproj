@@ -20,6 +20,7 @@
     
     <ItemGroup>
         <ProjectReference Include="..\Twith.Domain\Twith.Domain.csproj" />
+        <ProjectReference Include="..\Twith.Identity\Twith.Identity.csproj" />
         <ProjectReference Include="..\Twith.Infrastructure\Twith.Infrastructure.csproj" />
         <ProjectReference Include="..\Twith.Application\Twith.Application.csproj" />
         <ProjectReference Include="..\Twith.IoC\Twith.IoC.csproj" />

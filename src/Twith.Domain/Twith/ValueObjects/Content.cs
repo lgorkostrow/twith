@@ -1,8 +1,9 @@
 ﻿using System;
+using Twith.Domain.Common.ValueObjects;
 
 namespace Twith.Domain.Twith.ValueObjects
 {
-    public record Content
+    public record Content : BaseValueObject
     {
         public string Value { get; }
 

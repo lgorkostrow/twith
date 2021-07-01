@@ -5,7 +5,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Twith.Identity.Models;
+using Twith.Identity.Entities;
 using Twith.Identity.Services;
 using Xunit;
 

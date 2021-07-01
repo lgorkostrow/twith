@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Twith.API.Validation;
 using Twith.Application.Queries.User;
 
-namespace Twith.API.Attributes.Validation
+namespace Twith.API.Validation.Attributes
 {
     public class UniqueNickNameAttribute : ValidationAttribute
     {

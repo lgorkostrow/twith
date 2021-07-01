@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Twith.Domain.Common.Events;
-using Twith.Infrastructure.Data;
+using Twith.Domain.Common.Services;
 
 namespace Twith.Application.Service
 {
@@ -22,10 +23,7 @@ namespace Twith.Application.Service
 
         public async Task Dispatch(IList<IDomainEvent> domainEvents)
         {
-            foreach (var domainEvent in domainEvents)
-            {
-                await Dispatch(domainEvent);
-            }
+            await Task.WhenAll(domainEvents.Select(Dispatch));
         }
     }
 }

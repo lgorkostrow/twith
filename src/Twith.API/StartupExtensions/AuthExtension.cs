@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Twith.API.Authorizations.Handlers;
 using Twith.Identity;
 using Twith.Identity.Authorization;
-using Twith.Identity.Models;
+using Twith.Identity.Entities;
 
 namespace Twith.API.StartupExtensions
 {

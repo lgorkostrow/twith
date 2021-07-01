@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Twith.API.Attributes.Validation;
+using Twith.API.Validation.Attributes;
 
 namespace Twith.API.Requests.Auth
 {

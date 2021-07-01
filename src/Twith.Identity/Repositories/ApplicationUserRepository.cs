@@ -1,9 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Twith.Identity;
-using Twith.Identity.Repositories;
 
-namespace Twith.Infrastructure.Identity
+namespace Twith.Identity.Repositories
 {
     public class ApplicationUserRepository : IApplicationUserRepository
     {

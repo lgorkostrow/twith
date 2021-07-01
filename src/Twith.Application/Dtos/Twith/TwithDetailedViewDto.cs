@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Twith.Domain.Twith.Dtos
+namespace Twith.Application.Dtos.Twith
 {
     public record TwithDetailedViewDto : TwithListViewDto
     {

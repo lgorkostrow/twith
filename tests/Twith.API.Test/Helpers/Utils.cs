@@ -7,7 +7,7 @@ using Twith.Domain.Common.ValueObjects;
 using Twith.Domain.User.Entities;
 using Twith.Domain.User.ValueObjects;
 using Twith.Identity;
-using Twith.Identity.Models;
+using Twith.Identity.Entities;
 using Twith.Infrastructure.Data;
 
 namespace Twith.API.Test.Helpers

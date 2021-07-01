@@ -5,8 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Twith.Application.Dtos.Twith;
 using Twith.Domain.Common.Queries;
-using Twith.Domain.Twith.Dtos;
 using Twith.Infrastructure.Data;
 
 namespace Twith.Application.Queries.Twith

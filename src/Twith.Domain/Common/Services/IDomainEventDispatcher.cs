@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Twith.Domain.Common.Events;
 
-namespace Twith.Infrastructure.Data
+namespace Twith.Domain.Common.Services
 {
     public interface IDomainEventDispatcher
     {

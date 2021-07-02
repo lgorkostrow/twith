@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Twith.Domain.Common.Entities;
 
-namespace Twith.Domain.Common.Repositories
+namespace Twith.Infrastructure.Repositories
 {
     public interface IBaseRepository<TEntity> where TEntity : BaseEntity
     {

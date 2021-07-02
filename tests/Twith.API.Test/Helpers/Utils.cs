@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Bogus;
 using Twith.Domain.Common.ValueObjects;
@@ -8,7 +7,7 @@ using Twith.Domain.User.Entities;
 using Twith.Domain.User.ValueObjects;
 using Twith.Identity;
 using Twith.Identity.Entities;
-using Twith.Infrastructure.Data;
+using Twith.Infrastructure.PostgreSQL.Data;
 
 namespace Twith.API.Test.Helpers
 {

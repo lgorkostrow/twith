@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Twith.Application.Dtos.Twith;
-using Twith.Infrastructure.Data;
+using Twith.Infrastructure.PostgreSQL.Data;
 
 namespace Twith.Application.Queries.Twith
 {

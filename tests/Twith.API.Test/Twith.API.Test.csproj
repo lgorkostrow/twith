@@ -25,7 +25,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\src\Twith.API\Twith.API.csproj" />
-        <ProjectReference Include="..\..\Twith.API\Twith.API.csproj" />
     </ItemGroup>
 
     <ItemGroup>

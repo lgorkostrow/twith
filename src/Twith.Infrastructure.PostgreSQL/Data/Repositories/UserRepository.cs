@@ -1,7 +1,7 @@
 ﻿using Twith.Domain.User.Entities;
-using Twith.Domain.User.Repositories;
+using Twith.Infrastructure.Repositories;
 
-namespace Twith.Infrastructure.Data.Repositories
+namespace Twith.Infrastructure.PostgreSQL.Data.Repositories
 {
     public class UserRepository : AbstractBaseRepository<User>, IUserRepository
     {

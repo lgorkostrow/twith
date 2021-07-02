@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Twith.Domain.Common.ValueObjects;
-using Twith.Domain.User.Repositories;
+using Twith.Infrastructure.Repositories;
 
 namespace Twith.Application.Commands.User
 {

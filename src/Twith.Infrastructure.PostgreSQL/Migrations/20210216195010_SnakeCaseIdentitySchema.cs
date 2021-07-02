@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Twith.Infrastructure.Migrations
+namespace Twith.Infrastructure.PostgreSQL.Migrations
 {
     public partial class SnakeCaseIdentitySchema : Migration
     {

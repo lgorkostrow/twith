@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Twith.Identity;
-using Twith.Infrastructure.Data;
+using Twith.Infrastructure.PostgreSQL.Data;
 
 namespace Twith.API.StartupExtensions
 {

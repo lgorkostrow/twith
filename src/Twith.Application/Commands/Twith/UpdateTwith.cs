@@ -2,8 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Twith.Domain.Twith.Repositories;
 using Twith.Domain.Twith.ValueObjects;
+using Twith.Infrastructure.Repositories;
 
 namespace Twith.Application.Commands.Twith
 {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Twith.Domain.Twith.Entities;
 
-namespace Twith.Infrastructure.Data.EntityConfigurations
+namespace Twith.Infrastructure.PostgreSQL.Data.EntityConfigurations
 {
     public class LikeConfiguration : IEntityTypeConfiguration<Like>
     {

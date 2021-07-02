@@ -1,11 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Twith.Application.Service;
 using Twith.Domain.Common.Services;
-using Twith.Domain.Twith.Repositories;
-using Twith.Domain.User.Repositories;
 using Twith.Identity.Repositories;
 using Twith.Identity.Services;
-using Twith.Infrastructure.Data.Repositories;
+using Twith.Infrastructure.PostgreSQL.Data.Repositories;
+using Twith.Infrastructure.Repositories;
 
 namespace Twith.API.StartupExtensions
 {

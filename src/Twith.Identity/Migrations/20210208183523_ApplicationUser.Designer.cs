@@ -148,7 +148,7 @@ namespace Twith.Identity.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Twith.Infrastructure.Identity.ApplicationUser", b =>
+            modelBuilder.Entity("Twith.Infrastructure.PostgreSQL.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -223,7 +223,7 @@ namespace Twith.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Twith.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("Twith.Infrastructure.PostgreSQL.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -232,7 +232,7 @@ namespace Twith.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Twith.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("Twith.Infrastructure.PostgreSQL.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -247,7 +247,7 @@ namespace Twith.Identity.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Twith.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("Twith.Infrastructure.PostgreSQL.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -256,7 +256,7 @@ namespace Twith.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Twith.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("Twith.Infrastructure.PostgreSQL.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

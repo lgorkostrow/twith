@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Twith.Infrastructure.Data.EntityConfigurations
+namespace Twith.Infrastructure.PostgreSQL.Data.EntityConfigurations
 {
     public class TwithConfiguration : IEntityTypeConfiguration<Domain.Twith.Entities.Twith>
     {

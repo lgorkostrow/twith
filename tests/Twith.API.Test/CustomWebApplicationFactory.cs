@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Twith.API.Test.Helpers;
 using Twith.Identity;
-using Twith.Infrastructure.Data;
+using Twith.Infrastructure.PostgreSQL.Data;
 
 namespace Twith.API.Test
 {

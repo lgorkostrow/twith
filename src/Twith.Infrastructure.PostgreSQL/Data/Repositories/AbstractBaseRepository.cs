@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Twith.Domain.Common.Entities;
 using Twith.Domain.Common.Exceptions;
-using Twith.Domain.Common.Repositories;
+using Twith.Infrastructure.Repositories;
 
-namespace Twith.Infrastructure.Data.Repositories
+namespace Twith.Infrastructure.PostgreSQL.Data.Repositories
 {
     public abstract class AbstractBaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
     {

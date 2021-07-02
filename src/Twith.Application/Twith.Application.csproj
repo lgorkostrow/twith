@@ -11,6 +11,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Twith.Domain\Twith.Domain.csproj" />
+        <ProjectReference Include="..\Twith.Infrastructure.PostgreSQL\Twith.Infrastructure.PostgreSQL.csproj" />
         <ProjectReference Include="..\Twith.Infrastructure\Twith.Infrastructure.csproj" />
     </ItemGroup>
     

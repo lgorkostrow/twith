@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Twith.Domain.Common.Exceptions;
-using Twith.Domain.Twith.Repositories;
+using Twith.Infrastructure.Repositories;
 
-namespace Twith.Infrastructure.Data.Repositories
+namespace Twith.Infrastructure.PostgreSQL.Data.Repositories
 {
     public class TwithRepository : AbstractBaseRepository<Domain.Twith.Entities.Twith>, ITwithRepository
     {

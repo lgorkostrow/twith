@@ -6,9 +6,9 @@ using Twith.Domain.Common.Entities;
 using Twith.Domain.Common.Services;
 using Twith.Domain.Twith.Entities;
 using Twith.Domain.User.Entities;
-using Twith.Infrastructure.Data.EntityConfigurations;
+using Twith.Infrastructure.PostgreSQL.Data.EntityConfigurations;
 
-namespace Twith.Infrastructure.Data
+namespace Twith.Infrastructure.PostgreSQL.Data
 {
     public class ApplicationDbContext : DbContext
     {

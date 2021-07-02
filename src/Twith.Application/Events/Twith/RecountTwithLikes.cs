@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Twith.Domain.Twith.Events;
-using Twith.Infrastructure.Data;
+using Twith.Infrastructure.PostgreSQL.Data;
 
 namespace Twith.Application.Events.Twith
 {

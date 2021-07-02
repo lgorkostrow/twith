@@ -49,6 +49,9 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
                     .HasColumnType("varchar(100)")
                     .IsRequired();
             });
+
+            builder.Property(u => u.CreatedAt).IsRequired();
+            builder.Property(u => u.UpdatedAt);
         }
     }
 }

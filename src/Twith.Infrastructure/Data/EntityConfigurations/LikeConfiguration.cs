@@ -48,6 +48,9 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
                         .IsRequired();
                 });
             });
+            
+            builder.Property(l => l.CreatedAt).IsRequired();
+            builder.Property(l => l.UpdatedAt);
         }
     }
 }

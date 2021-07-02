@@ -61,6 +61,9 @@ namespace Twith.Infrastructure.Data.EntityConfigurations
             
             builder.HasMany(t => t.Likes)
                 .WithOne(l => l.Twith);
+            
+            builder.Property(t => t.CreatedAt).IsRequired();
+            builder.Property(t => t.UpdatedAt);
         }
     }
 }

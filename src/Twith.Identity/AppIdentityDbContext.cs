@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Twith.Identity.Models;
+using Twith.Identity.Entities;
 
 namespace Twith.Identity
 {
